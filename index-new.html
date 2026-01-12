@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0f172a">
+<meta name="description" content="ULGI PRO - Баян-Өлгийге арналған ең дәл ауа райы болжамы. 3 метео модель, GPS дәлдік, 14 сүм">
+
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/1163/1163661.png">
+<title>ULGI PRO | Баян-Өлгий Ең Дәл Ауа Райы 🌤️</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+:root {
+  --primary: #0ea5e9;
+  --secondary: #8b5cf6;
+  --accent: #f59e0b;
+  --danger: #ef4444;
+  --success: #10b981;
+  --glass: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --text: #f1f5f9;
+  --text-dim: #94a3b8;
+}
+
+body {
+  font-family: 'Exo 2', sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* 3D ANIMATED BACKGROUND */
+.bg-3d {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.3;
+  animation: float 20s ease-in-out infinite;
+}
+
+.orb1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--primary), transparent);
+  top: -10%;
+  left: -10%;
+  animation-delay: 0s;
+}
+
+.orb2 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, var(--secondary), transparent);
+  bottom: -15%;
+  right: -10%;
+  animation-delay: 7s;
+}
+
+.orb3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, var(--accent), transparent);
+  top: 50%;
+  left: 50%;
+  animation-delay: 14s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(50px, -80px) scale(1.1); }
+  66% { transform: translate(-50px, 80px) scale(0.9); }
+}
+
+/* STARS */
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+/* CONTAINER */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* GLASSMORPHISM CARD */
+.glass-card {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+}
+
+/* HERO SECTION */
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: 30px;
+  animation: fadeInDown 0.8s ease;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 48px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease infinite;
+  text-shadow: 0 0 40px rgba(14, 165, 233, 0.3);
+  margin-bottom: 15px;
+  letter-spacing: 3px;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.hero-tagline {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: pulse 2s ease infinite;
+}
+
+.hero-desc {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  max-width: 400px;
+  margin: 0 auto 20px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(139, 92, 246, 0.2));
+  border: 1px solid var(--primary);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* LANG SELECTOR */
+.lang-bar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  animation: fadeIn 1s ease 0.3s both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lang-btn {
+  background: var(--glass);
+  border: 2px solid var(--glass-border);
+  color: var(--text);
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+}
+
+.lang-btn.active {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-color: var(--primary);
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.5);
+  transform: scale(1.05);
+}
+
+.lang-btn:hover:not(.active) {
+  border-color: var(--primary);
+  box-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
+}
+
+/* LOCATION BAR */
+.location-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  animation: fadeIn 1s ease 0.5s both;
+}
+
+.gps-btn {
+  flex: 0 0 auto;
+  background: linear-gradient(135deg, var(--success), #059669);
+  border: none;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.gps-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+}
+
+.gps-btn.active {
+  background: linear-gradient(135deg, var(--primary), #0284c7);
+}
+
+.loc-select {
+  flex: 1;
+  background: var(--glass);
+  border: 2px solid var(--glass-border);
+  color: var(--text);
+  padding: 14px 20px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  appearance: none;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.loc-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
+}
+
+/* ALERT BANNER */
+.alert-banner {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(239, 68, 68, 0.2));
+  border: 2px solid var(--danger);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 20px;
+  display: none;
+  align-items: center;
+  gap: 12px;
+  animation: alertPulse 2s ease infinite, fadeIn 0.5s ease;
+}
+
+@keyframes alertPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  50% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+}
+
+.alert-banner.show {
+  display: flex;
+}
+
+.alert-icon {
+  font-size: 24px;
+  animation: shake 0.5s ease infinite;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* MAIN WEATHER */
+.main-weather {
+  text-align: center;
+  padding: 30px 0;
+  animation: fadeIn 1s ease 0.7s both;
+}
+
+.weather-icon-main {
+  font-size: 100px;
+  margin: 20px 0;
+  animation: bounce 2s ease infinite;
+  filter: drop-shadow(0 0 30px rgba(14, 165, 233, 0.5));
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.temp-display {
+  font-size: 96px;
+  font-weight: 900;
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(135deg, #fff, var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin: 20px 0;
+  text-shadow: 0 0 60px rgba(14, 165, 233, 0.3);
+}
+
+.weather-desc {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-dim);
+  margin-bottom: 15px;
+  text-transform: capitalize;
+}
+
+.feels-like {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(14, 165, 233, 0.15);
+  border: 1px solid var(--primary);
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.weather-status {
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+/* STATS GRID */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin: 30px 0;
+  animation: fadeIn 1s ease 0.9s both;
+}
+
+.stat-card {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent, rgba(14, 165, 233, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.stat-card:hover::before {
+  opacity: 1;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  border-color: var(--primary);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.stat-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.5));
+}
+
+.stat-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 900;
+  font-family: 'Orbitron', sans-serif;
+  margin-bottom: 8px;
+}
+
+.stat-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-safe { background: var(--success); color: white; }
+.badge-warn { background: var(--accent); color: #000; }
+.badge-danger { background: var(--danger); color: white; }
+
+/* SECTION HEADER */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 40px 0 20px;
+  font-size: 14px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--primary);
+  font-family: 'Orbitron', sans-serif;
+}
+
+.section-header::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), transparent);
+}
+
+/* HOURLY SCROLL */
+.hourly-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 10px 0 20px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hourly-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.hour-card {
+  min-width: 120px;
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.hour-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+  box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+}
+
+.hour-time {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+
+.hour-icon {
+  font-size: 36px;
+  margin: 10px 0;
+}
+
+.hour-temp {
+  font-size: 24px;
+  font-weight: 900;
+  font-family: 'Orbitron', sans-serif;
+  margin: 10px 0;
+}
+
+.hour-details {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 10px;
+}
+
+/* DAILY LIST */
+.daily-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.day-card {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.day-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+}
+
+.day-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.day-name {
+  font-size: 18px;
+  font-weight: 900;
+  text-transform: capitalize;
+}
+
+.day-icon {
+  font-size: 36px;
+}
+
+.day-temps {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.temp-max {
+  font-size: 36px;
+  font-weight: 900;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.temp-min {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-dim);
+}
+
+.day-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding-top: 15px;
+  border-top: 1px solid var(--glass-border);
+}
+
+.day-stat {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.day-stat-val {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 11px;
+  color: var(--text-dim);
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+  line-height: 2;
+}
+
+.footer-logo {
+  font-size: 18px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  .hero-logo { font-size: 36px; }
+  .temp-display { font-size: 72px; }
+  .stats-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-3d">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="stars" id="stars"></div>
+</div>
+
+<div class="container">
+  
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-logo">ULGI PRO</div>
+    <div class="hero-tagline">🌤️ Баян-Өлгийге арналған ең дәл ауа райы</div>
+    <div class="hero-desc">
+      3 халықаралық метео модель • GPS дәлдік • 14 сүм 
+      24/7 реалды уақытта жаңартылады
+    </div>
+    <div class="hero-badge">
+      <i class="fas fa-shield-check"></i>
+      <span id="modelBadge">ECMWF EU MODEL</span>
+    </div>
+  </div>
+
+  <!-- LANG SELECTOR -->
+  <div class="lang-bar">
+    <button class="lang-btn active" data-lang="kk" onclick="setLang('kk')">ҚАЗ</button>
+    <button class="lang-btn" data-lang="mn" onclick="setLang('mn')">МОН</button>
+    <button class="lang-btn" data-lang="en" onclick="setLang('en')">ENG</button>
+  </div>
+
+  <!-- LOCATION -->
+  <div class="location-bar">
+    <button class="gps-btn" id="gpsBtn" onclick="manualGPS()">
+      <i class="fas fa-crosshairs"></i>
+      <span data-i18n="gps">GPS қосу</span>
+    </button>
+    <select class="loc-select" id="locSelect" onchange="switchLoc()"></select>
+  </div>
+
+  <!-- ALERT -->
+  <div class="alert-banner" id="alertBanner">
+    <div class="alert-icon">⚠️</div>
+    <div id="alertText"></div>
+  </div>
+
+  <!-- MAIN WEATHER -->
+  <div class="glass-card main-weather">
+    <div class="weather-icon-main" id="mainIcon">☀️</div>
+    <div class="temp-display" id="mainTemp">--°</div>
+    <div class="weather-desc" id="mainDesc">Жүктелуде...</div>
+    <div class="feels-like" id="feelsLike">
+      <i class="fas fa-thermometer-half"></i>
+      <span>--°C</span>
+    </div>
+    <div class="weather-status" id="mainStatus"></div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon" id="windIcon">💨</div>
+      <div class="stat-label" data-i18n="wind">Жел</div>
+      <div class="stat-value" id="windVal">--</div>
+      <div class="stat-badge" id="windBadge">--</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">💧</div>
+      <div class="stat-label" data-i18n="rain">Жауын</div>
+      <div class="stat-value" id="rainVal">--</div>
+      <div class="stat-badge" id="rainBadge">--</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">💦</div>
+      <div class="stat-label" data-i18n="humidity">Ылғал</div>
+      <div class="stat-value" id="humVal">--%</div>
+      <div class="stat-badge" id="humBadge">--</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🌫️</div>
+      <div class="stat-label" data-i18n="air">Ауа</div>
+      <div class="stat-value" id="aqiVal">--</div>
+      <div class="stat-badge" id="aqiBadge">--</div>
+    </div>
+  </div>
+
+  <!-- HOURLY -->
+  <div class="section-header">
+    <i class="fas fa-clock"></i>
+    <span data-i18n="hourly">24 САҒАТ</span>
+  </div>
+  <div class="hourly-scroll" id="hourlyList"></div>
+
+  <!-- DAILY -->
+  <div class="section-header">
+    <i class="fas fa-calendar-week"></i>
+    <span data-i18n="daily">7 КҮН</span>
+  </div>
+  <div class="daily-list" id="dailyList"></div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-logo">ULGI PRO v3.0</div>
+    <div>
+      BAYAN-OLGII • ULTRA PRECISION<br>
+      ECMWF • ICON • GFS MODELS<br>
+      © 2026 • БАРЛЫҚ ҚҰҚЫҚТАР ҚОРҒАЛҒАН
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ==========================================
+// TRANSLATIONS
+// ==========================================
+const T = {
+  kk: {
+    gps: "GPS қосу",
+    gpsActive: "GPS қосулы",
+    wind: "Жел (м/с)",
+    rain: "Жауын (мм)",
+    humidity: "Ылғал",
+    air: "Ауа сапасы",
+    hourly: "24 САҒАТ",
+    daily: "7 КҮН",
+    today: "Бүгін",
+    safe: "Қалыпты",
+    warning: "Ескерту",
+    danger: "ҚАУІП!",
+    loading: "Жүктелуде...",
+    windAlert: "⚠️ ЖЕЛ КҮШЕЙДІ! ",
+    windDanger: "🚨 ҚАУІПТІ ЖЕЛ! ",
+    unit_wind: "м/с",
+    unit_precip: "мм",
+    wind_label: "Жел",
+    precip_label: "Жауын",
+    high_temp: "Макс",
+    low_temp: "Мин"
+  },
+  mn: {
+    gps: "GPS идэвхжүүлэх",
+    gpsActive: "GPS идэвхтэй",
+    wind: "Салхи (м/с)",
+    rain: "Хур тунадас (мм)",
+    humidity: "Чийгшил",
+    air: "Агаарын чанар",
+    hourly: "24 ЦАГ",
+    daily: "7 ӨДӨР",
+    today: "Өнөөдөр",
+    safe: "Хэвийн",
+    warning: "Анхааруулга",
+    danger: "АЮУЛТАЙ!",
+    loading: "Ачаалж байна...",
+    windAlert: "⚠️ САЛХИ ХҮЧТЭЙ! ",
+    windDanger: "🚨 АЮУЛТАЙ САЛХИ! ",
+    unit_wind: "м/с",
+    unit_precip: "мм",
+    wind_label: "Салхи",
+    precip_label: "Хур тунадас",
+    high_temp: "Өндөр",
+    low_temp: "Бага"
+  },
+  en: {
+    gps: "Enable GPS",
+    gpsActive: "GPS Active",
+    wind: "Wind (m/s)",
+    rain: "Rain (mm)",
+    humidity: "Humidity",
+    air: "Air Quality",
+    hourly: "24 HOURS",
+    daily: "7 DAYS",
+    today: "Today",
+    safe: "Safe",
+    warning: "Warning",
+    danger: "DANGER!",
+    loading: "Loading...",
+    windAlert: "⚠️ STRONG WIND! ",
+    windDanger: "🚨 DANGEROUS WIND! ",
+    unit_wind: "m/s",
+    unit_precip: "mm",
+    wind_label: "Wind",
+    precip_label: "Precip",
+    high_temp: "High",
+    low_temp: "Low"
+  }
+};
+
+let lang = 'kk';
+function setLang(l) {
+  lang = l;
+  localStorage.setItem('ULGI_LANG', l);
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === l);
+  });
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if(T[l][key]) el.textContent = T[l][key];
+  });
+  if(window.lastData) renderWeather(window.lastData.w, window.lastData.a, window.lastData.m);
+}
+
+// ==========================================
+// LOCATIONS
+// ==========================================
+const LOCS = [
+  {kk:"Өлгий (Орталық)", mn:"Өлгий (Төв)", en:"Olgii (Center)", lat:48.9707, lon:89.9678},
+  {kk:"Алтай", mn:"Алтай", en:"Altai", lat:48.2937, lon:89.5113},
+  {kk:"Алтанцөгц", mn:"Алтанцөгц", en:"Altantsugts", lat:49.0556, lon:90.5283},
+  {kk:"Баяннуур", mn:"Баяннуур", en:"Bayannuur", lat:48.9567, lon:91.0125},
+  {kk:"Бугат", mn:"Бугат", en:"Bugat", lat:48.9328, lon:90.0169},
+  {kk:"Булган", mn:"Булган", en:"Bulgan", lat:46.9206, lon:91.0911},
+  {kk:"Буянт", mn:"Буянт", en:"Buyant", lat:48.5303, lon:89.4719},
+  {kk:"Дэлүүн", mn:"Дэлүүн", en:"Deluun", lat:47.8094, lon:90.7578},
+  {kk:"Ногооннуур", mn:"Ногооннуур", en:"Nogoonnuur", lat:49.6192, lon:90.2228},
+  {kk:"Сагсай", mn:"Сагсай", en:"Sagsai", lat:48.9083, lon:89.6506},
+  {kk:"Толбо", mn:"Толбо", en:"Tolbo", lat:48.4419, lon:90.0578},
+  {kk:"Цагааннуур", mn:"Цагааннуур", en:"Tsagaannuur", lat:49.5317, lon:89.7731},
+  {kk:"Цэнгэл", mn:"Цэнгэл", en:"Tsengel", lat:49.0772, lon:88.8500},
+  {kk:"Улаанхус", mn:"Улаанхус", en:"Ulaankhus", lat:49.3339, lon:89.4564}
+];
+
+let locIdx = 0;
+let gpsCoords = null;
+let usingGPS = false;
+
+function updateLocSelect() {
+  const sel = document.getElementById('locSelect');
+  sel.innerHTML = '';
+  LOCS.forEach((loc, i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.text = loc[lang];
+    sel.appendChild(opt);
+  });
+  sel.value = locIdx;
+}
+
+function switchLoc() {
+  locIdx = document.getElementById('locSelect').value;
+  usingGPS = false;
+  document.getElementById('gpsBtn').classList.remove('active');
+  fetchWeather();
+}
+
+// ==========================================
+// GPS
+// ==========================================
+async function autoGPS() {
+  if(!navigator.geolocation) return;
+  try {
+    const pos = await new Promise((res, rej) => {
+      navigator.geolocation.getCurrentPosition(res, rej, {
+        enableHighAccuracy: true,
+        timeout: 30000,
+        maximumAge: 0
+      });
+    });
+    gpsCoords = {lat: pos.coords.latitude, lon: pos.coords.longitude};
+    usingGPS = true;
+    const btn = document.getElementById('gpsBtn');
+    btn.classList.add('active');
+    btn.innerHTML = `<i class="fas fa-check-circle"></i> ${T[lang].gpsActive}`;
+    fetchWeather();
+  } catch(e) {
+    console.log('Auto GPS failed:', e);
+  }
+}
+
+function manualGPS() {
+  autoGPS();
+}
+
+// ==========================================
+// WEATHER CODES (жақсартылған)
+// ==========================================
+const CODES = {
+  0: {kk:"Ашық", mn:"Цэлмэг", en:"Clear", i:"☀️"},
+  1: {kk:"Негізінен ашық", mn:"Үндсэндээ цэлмэг", en:"Mainly clear", i:"🌤️"},
+  2: {kk:"Ішінара бұлтты", mn:"Хагас үүлтэй", en:"Partly cloudy", i:"⛅"},
+  3: {kk:"Бұлтты", mn:"Үүлтэй", en:"Overcast", i:"☁️"},
+  45: {kk:"Тұман", mn:"Манан", en:"Fog", i:"🌫️"},
+  48: {kk:"Қырау тұман", mn:"Мөсөн манан", en:"Rime fog", i:"🌫️"},
+  51: {kk:"Жеңіл жаңбыр", mn:"Бага бороо", en:"Light drizzle", i:"🌦️"},
+  53: {kk:"Жаңбыр", mn:"Бороо", en:"Drizzle", i:"🌧️"},
+  55: {kk:"Қатты жаңбыр", mn:"Их бороо", en:"Dense drizzle", i:"🌧️"},
+  61: {kk:"Жеңіл жаңбыр", mn:"Бага бороо", en:"Light rain", i:"🌧️"},
+  63: {kk:"Қалыпты жаңбыр", mn:"Дунд бороо", en:"Rain", i:"🌧️"},
+  65: {kk:"Қатты жаңбыр", mn:"Хүчтэй бороо", en:"Heavy rain", i:"🌧️"},
+  71: {kk:"Жеңіл қар", mn:"Бага цас", en:"Light snow", i:"🌨️"},
+  73: {kk:"Қар", mn:"Цас", en:"Snow", i:"🌨️"},
+  75: {kk:"Қатты қар", mn:"Хүчтэй цас", en:"Heavy snow", i:"🌨️"},
+  95: {kk:"Найзағай", mn:"Аянга", en:"Thunderstorm", i:"⛈️"}
+};
+
+function getCode(c) {
+  const entry = CODES[c];
+  if (entry) {
+    return {text: entry[lang] || entry.kk, icon: entry.i};
+  }
+  return {text: "--", icon: "❓"};
+}
+
+// ==========================================
+// FETCH WEATHER
+// ==========================================
+async function fetchWeather() {
+  const loc = usingGPS && gpsCoords ? gpsCoords : LOCS[locIdx];
+  
+  document.getElementById('modelBadge').textContent = 'Жүктелуде...';
+  
+  let data = await tryFetch('ecmwf_ifs', loc, 3000);
+  if(!data) data = await tryFetch('icon_seamless', loc, 3000);
+  if(!data) data = await tryFetch('gfs_global', loc, 4000);
+  
+  if(data) {
+    window.lastData = {w: data.w, a: data.a, m: data.m};
+    renderWeather(data.w, data.a, data.m);
+  }
+}
+
+async function tryFetch(model, loc, timeout) {
+  const ctrl = new AbortController();
+  const id = setTimeout(() => ctrl.abort(), timeout);
+  
+  const wUrl = `https://api.open-meteo.com/v1/forecast?latitude=\( {loc.lat}&longitude= \){loc.lon}&models=${model}&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m,precipitation,relative_humidity_2m&hourly=temperature_2m,weather_code,wind_speed_10m,precipitation&daily=weather_code,temperature_2m_max,temperature_2m_min,wind_speed_10m_max,precipitation_sum&timezone=auto&wind_speed_unit=ms`;
+  
+  const aUrl = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=\( {loc.lat}&longitude= \){loc.lon}&current=european_aqi&timezone=auto`;
+  
+  try {
+    const [wRes, aRes] = await Promise.all([
+      fetch(wUrl, {signal: ctrl.signal}),
+      fetch(aUrl, {signal: ctrl.signal})
+    ]);
+    clearTimeout(id);
+    if(!wRes.ok) return null;
+    const w = await wRes.json();
+    const a = await aRes.json().catch(() => ({}));
+    return {w, a, m: model.toUpperCase()};
+  } catch(e) {
+    return null;
+  }
+}
+
+// ==========================================
+// RENDER
+// ==========================================
+function renderWeather(w, a, model) {
+  const c = w.current;
+  const h = w.hourly;
+  const d = w.daily;
+  
+  document.getElementById('modelBadge').innerHTML = `<i class="fas fa-satellite"></i> ${model}`;
+  
+  // MAIN
+  const temp = Math.round(c.temperature_2m);
+  const feels = Math.round(c.apparent_temperature);
+  const code = getCode(c.weather_code);
+  
+  document.getElementById('mainIcon').textContent = code.icon;
+  document.getElementById('mainTemp').textContent = (temp>0?'+':'')+temp+'°';
+  document.getElementById('mainDesc').textContent = code.text;
+  document.getElementById('feelsLike').innerHTML = `<i class="fas fa-thermometer-half"></i><span>\( {feels>0?'+':''} \){feels}°C</span>`;
+  
+  // WIND ALERT
+  const ws = c.wind_speed_10m;
+  const alertBanner = document.getElementById('alertBanner');
+  const alertText = document.getElementById('alertText');
+  if(ws >= 10) {
+    alertBanner.classList.add('show');
+    alertText.innerHTML = `\( {T[lang].windDanger}<strong> \){ws.toFixed(1)} м/с</strong>`;
+  } else if(ws >= 2.7) {
+    alertBanner.classList.add('show');
+    alertText.innerHTML = `\( {T[lang].windAlert}<strong> \){ws.toFixed(1)} м/с</strong>`;
+  } else {
+    alertBanner.classList.remove('show');
+  }
+  
+  // STATS
+  document.getElementById('windVal').textContent = ws.toFixed(1);
+  document.getElementById('windBadge').textContent = ws >= 10 ? T[lang].danger : ws >= 2.7 ? T[lang].warning : T[lang].safe;
+  document.getElementById('windBadge').className = 'stat-badge ' + (ws >= 10 ? 'badge-danger' : ws >= 2.7 ? 'badge-warn' : 'badge-safe');
+  
+  document.getElementById('rainVal').textContent = c.precipitation.toFixed(1);
+  document.getElementById('rainBadge').textContent = c.precipitation > 0 ? T[lang].warning : T[lang].safe;
+  document.getElementById('rainBadge').className = 'stat-badge ' + (c.precipitation > 0 ? 'badge-warn' : 'badge-safe');
+  
+  const hum = c.relative_humidity_2m;
+  document.getElementById('humVal').textContent = hum + '%';
+  const humBadge = document.getElementById('humBadge');
+  humBadge.textContent = hum < 40 ? T[lang].safe : T[lang].warning;
+  humBadge.className = 'stat-badge ' + (hum < 40 ? 'badge-safe' : 'badge-warn');
+  
+  const aqi = a?.current?.european_aqi || 0;
+  document.getElementById('aqiVal').textContent = aqi;
+  document.getElementById('aqiBadge').textContent = aqi > 50 ? T[lang].warning : T[lang].safe;
+  document.getElementById('aqiBadge').className = 'stat-badge ' + (aqi > 50 ? 'badge-warn' : 'badge-safe');
+  
+  // HOURLY
+  let hHTML = '';
+  const now = new Date().getHours();
+  let start = 0;
+  for(let i=0; i<h.time.length; i++){
+    if(h.time[i].includes(`T${String(now).padStart(2,'0')}:`)) {start=i; break;}
+  }
+  for(let i=start; i<start+24 && i<h.time.length; i++) {
+    const time = h.time[i].split('T')[1].slice(0,5);
+    const t = Math.round(h.temperature_2m[i]);
+    const code = getCode(h.weather_code[i]);
+    hHTML += `
+    <div class="hour-card">
+      <div class="hour-time">${time}</div>
+      <div class="hour-icon">${code.icon}</div>
+      <div class="hour-temp">\( {t>0?'+' :''} \){t}°</div>
+      <div class="hour-details">
+        💨 ${h.wind_speed_10m[i].toFixed(1)} ${T[lang].unit_wind}<br>
+        💧 ${h.precipitation[i].toFixed(1)} ${T[lang].unit_precip}
+      </div>
+    </div>`;
+  }
+  document.getElementById('hourlyList').innerHTML = hHTML;
+  
+  // DAILY
+  let dHTML = '';
+  const days = {
+    kk:['Жексенбі','Дүйсенбі','Сейсенбі','Сәрсенбі','Бейсенбі','Жұма','Сенбі'],
+    mn:['Ням','Даваа','Мягмар','Лхагва','Пүрэв','Баасан','Бямба'],
+    en:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+  };
+  for(let i=0; i<7 && i<d.time.length; i++) {
+    const date = new Date(d.time[i]);
+    const day = i===0 ? T[lang].today : days[lang][date.getDay()];
+    const max = Math.round(d.temperature_2m_max[i]);
+    const min = Math.round(d.temperature_2m_min[i]);
+    const code = getCode(d.weather_code[i]);
+    dHTML += `
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-name">${day}</div>
+        <div class="day-icon">${code.icon}</div>
+        <div class="day-temps">
+          <div class="temp-max">\( {max>0?'+' :''} \){max}°</div>
+          <div class="temp-min">\( {min>0?'+' :''} \){min}°</div>
+        </div>
+      </div>
+      <div class="day-stats">
+        <div class="day-stat">
+          <div class="day-stat-val">💨 ${d.wind_speed_10m_max[i].toFixed(1)}</div>
+          <div>${T[lang].wind_label}</div>
+        </div>
+        <div class="day-stat">
+          <div class="day-stat-val">💧 ${d.precipitation_sum[i].toFixed(1)}</div>
+          <div>${T[lang].precip_label}</div>
+        </div>
+        <div class="day-stat">
+          <div class="day-stat-val">\( {max>0?'+' :''} \){max}°</div>
+          <div>${T[lang].high_temp}</div>
+        </div>
+        <div class="day-stat">
+          <div class="day-stat-val">\( {min>0?'+' :''} \){min}°</div>
+          <div>${T[lang].low_temp}</div>
+        </div>
+      </div>
+    </div>`;
+  }
+  document.getElementById('dailyList').innerHTML = dHTML;
+}
+
+// ==========================================
+// STARS
+// ==========================================
+function createStars() {
+  const stars = document.getElementById('stars');
+  for(let i=0; i<100; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = Math.random()*100 + '%';
+    star.style.top = Math.random()*100 + '%';
+    star.style.animationDelay = Math.random()*3 + 's';
+    stars.appendChild(star);
+  }
+}
+
+// ==========================================
+// INIT
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+  createStars();
+  const savedLang = localStorage.getItem('ULGI_LANG') || 'kk';
+  setLang(savedLang);
+  updateLocSelect();
+  
+  setTimeout(() => autoGPS(), 500);
+  fetchWeather();
+});
+
+// Service Worker
+if('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(e => console.log('SW error:', e));
+  });
+}
+</script>
+</body>
+</html>

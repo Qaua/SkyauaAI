@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <title>SkyAua | Баян-Өлгий Қаржы & AI Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">SkyAua<span class="dot">.</span>ai</div>
+            <div class="nav-links">
+                <a href="#market">Нарық (25%)</a>
+                <a href="#news">Tech News (25%)</a>
+                <a href="#ai-lab" class="highlight">AI Зертханасы (50%)</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="ticker-wrap">
+        <div class="ticker" id="crypto-ticker">
+            <div class="ticker-item">Деректер жүктелуде...</div>
+        </div>
+    </div>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Болашақ бүгін <span class="gradient-text">Баян-Өлгийде</span></h1>
+            <p>Жасанды интеллект, жаһандық қаржы және технологиялық жаңалықтардың бірыңғай хабы.</p>
+            <a href="#ai-lab" class="btn-primary">AI Моделін сынау &rarr;</a>
+        </div>
+    </header>
+
+    <section id="ai-lab" class="section ai-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>🧠 Ашық AI Зертханасы</h2>
+                <p>Тіркелусіз, тегін AI модельдерін сынап көріңіз.</p>
+            </div>
+            
+            <div class="ai-interface">
+                <div class="ai-sidebar">
+                    <h3>Модельді таңдаңыз:</h3>
+                    <select id="ai-model-select" class="model-select">
+                        <option value="gpt">Open Assistant (GPT-like)</option>
+                        <option value="llama">Llama 3 (Meta)</option>
+                        <option value="mistral">Mistral AI</option>
+                    </select>
+                    <div class="ai-info">
+                        <p>Status: <span class="status-dot online"></span> <span id="model-status">Online</span></p>
+                        <small>API Key қажет емес. Шексіз сұраныс.</small>
+                    </div>
+                </div>
+                
+                <div class="chat-container">
+                    <div class="chat-window" id="chat-window">
+                        <div class="message bot">
+                            <div class="avatar">🤖</div>
+                            <div class="text">Сәлем! Мен SkyAua AI көмекшісімін. Маған код жазу, аударма жасау немесе идеялар туралы сұрақ қойыңыз.</div>
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="user-input" placeholder="Сұрағыңызды жазыңыз..." autocomplete="off">
+                        <button onclick="sendMessage()" id="send-btn">Жіберу</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="news" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>⚡ Технология Жаңалықтары</h2>
+                <p>Apple, Microsoft, Nvidia, Google - Нақты уақытта.</p>
+            </div>
+            <div class="news-grid" id="news-container">
+                <div class="loading-card">Жаңалықтар жүктелуде...</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="market" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>📈 Әлемдік Нарықтар</h2>
+                <p>Криптовалюта және Акциялар бағамы.</p>
+            </div>
+            
+            <div class="market-dashboard">
+                <div class="market-card">
+                    <h3>Bitcoin (BTC)</h3>
+                    <h2 id="price-btc">...</h2>
+                    <canvas id="chart-btc"></canvas>
+                </div>
+                <div class="market-card">
+                    <h3>Ethereum (ETH)</h3>
+                    <h2 id="price-eth">...</h2>
+                    <canvas id="chart-eth"></canvas>
+                </div>
+                <div class="market-card stocks">
+                    <h3>Top Tech Stocks</h3>
+                    <ul class="stock-list" id="stock-list">
+                        <li><span>NVIDIA (NVDA)</span> <span class="green">loading...</span></li>
+                        <li><span>APPLE (AAPL)</span> <span class="green">loading...</span></li>
+                        <li><span>MICROSOFT (MSFT)</span> <span class="green">loading...</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 SkyAua Project. Баян-Өлгий, Монголия. Барлық құқықтар қорғалған.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+  </html>
